@@ -79,7 +79,60 @@ overlay.innerHTML = `
       <div class="input-row"><label>Total SOL Earned</label><input type="text" value="123.456 SOL"></div>
       <div class="input-row"><label>% Gain</label><input type="text" value="+9999%"></div>
     </div>
-    <!-- other panels remain unchanged -->
+    <div id="pnl" class="hidden">
+      <h3>📉 PnL Tracker</h3>
+      <div class="toggle"><input type="checkbox"><label>Enable PnL Tracker</label></div>
+    </div>
+    <div id="sniper" class="hidden">
+      <h3>🎯 Auto Sniper</h3>
+      <div class="toggle"><input type="checkbox"><label>Enable Auto Sniper</label></div>
+      <div class="input-row"><label>Buy Delay (ms)</label><input type="text" placeholder="500"></div>
+      <div class="input-row"><label>Sell Delay (ms)</label><input type="text" placeholder="1000"></div>
+    </div>
+    <div id="copy" class="hidden">
+      <h3>👥 Copy Trading</h3>
+      <div class="toggle"><input type="checkbox"><label>Enable Copy Trading</label></div>
+      <div class="input-row"><label>Wallets to Copy</label><input type="text" placeholder="0xABC123..."></div>
+      <div class="input-row"><label>Mirror %</label><input type="text" placeholder="100"></div>
+    </div>
+    <div id="wallet" class="hidden">
+      <h3>👛 Wallet Tracker</h3>
+      <div class="toggle"><input type="checkbox"><label>Enable Wallet Tracker</label></div>
+      <div class="input-row"><label>Tracked Wallets</label><input type="text" placeholder="0xABC123..."></div>
+    </div>
+    <div id="twitter" class="hidden">
+      <h3>🐦 Twitter Tracker</h3>
+      <div class="toggle"><input type="checkbox"><label>Enable Twitter Tracker</label></div>
+      <div class="input-row"><label>Handles</label><input type="text" placeholder="@elonmusk"></div>
+    </div>
+    <div id="coin" class="hidden">
+      <h3>🪙 Coin Tracker</h3>
+      <div class="toggle"><input type="checkbox"><label>Enable Coin Tracker</label></div>
+      <div class="input-row"><label>Token List</label><input type="text" placeholder="CAKE, BONK"></div>
+    </div>
+    <div id="autobuy" class="hidden">
+      <h3>🤖 Auto Buyer</h3>
+      <div class="toggle"><input type="checkbox"><label>Enable Auto Buyer</label></div>
+    </div>
+    <div id="autosell" class="hidden">
+      <h3>🤖 Auto Seller</h3>
+      <div class="toggle"><input type="checkbox"><label>Enable Auto Seller</label></div>
+    </div>
+    <div id="alpha" class="hidden">
+      <h3>📡 Alpha & Signals</h3>
+      <div class="toggle"><input type="checkbox"><label>Enable Alpha Feed</label></div>
+      <div class="toggle"><input type="checkbox"><label>Enable Call Alerts</label></div>
+    </div>
+    <div id="utils" class="hidden">
+      <h3>🧰 Utilities</h3>
+      <div class="toggle"><input type="checkbox"><label>Enable TX Builder</label></div>
+      <div class="toggle"><input type="checkbox"><label>Enable Token Checker</label></div>
+    </div>
+    <div id="dev" class="hidden">
+      <h3>🛠️ Dev Tools</h3>
+      <div class="toggle"><input type="checkbox"><label>Enable Contract Interactor</label></div>
+      <div class="toggle"><input type="checkbox"><label>Enable Honeypot Checker</label></div>
+    </div>
     <div id="rug" class="hidden">
       <h3>🚨 Anti Rug Pull</h3>
       <div class="toggle"><input type="checkbox"><label>Enable Anti-Rug Protection</label></div>
