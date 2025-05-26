@@ -141,20 +141,22 @@ overlay.innerHTML = `
   </div>
 
   <div class="content-area">
-    <div id="home" class="panel-content active">
-      <h3>🏠 Dashboard</h3>
-      <div class="input-row"><label>All-Time PnL</label><input type="text" value="+420.69 SOL"></div>
-      <div class="input-row"><label>Daily PnL</label><input type="text" value="+69.42 SOL"></div>
-      <div class="input-row"><label>Total SOL Earned</label><input type="text" value="123.456 SOL"></div>
-      <div class="input-row"><label>% Gain</label><input type="text" value="+9999%"></div>
-    </div>
-    <div id="pnl" class="panel-content">
-      <h3>📉 PnL Tracker</h3>
-      <div class="toggle">
-        <label>Enable PnL Tracker</label>
-        <label class="switch"><input type="checkbox"><span class="slider"></span></label>
+    ${['home','pnl','sniper','copy','wallet','twitter','coin','autobuy','autosell','alpha','utils','dev','rug'].map(id => `
+      <div id="${id}" class="panel-content${id === 'home' ? ' active' : ''}">
+        <h3>${document.querySelector(`.menu-item[onclick*='${id}']`).innerText}</h3>
+        <div class="toggle">
+          <label>Enable ${id.charAt(0).toUpperCase() + id.slice(1).replace(/([A-Z])/g, ' $1')}</label>
+          <label class="switch"><input type="checkbox"><span class="slider"></span></label>
+        </div>
+        ${id === 'rug' ? `
+          <div class="input-row"><label>Trigger Loss % (e.g. -25)</label><input type="text" placeholder="-25"></div>
+          <div class="input-row"><label>Auto-Sell If Drop Predicted > %</label><input type="text" placeholder="70"></div>
+          <div class="toggle">
+            <label>Instant Exit Enabled</label>
+            <label class="switch"><input type="checkbox"><span class="slider"></span></label>
+          </div>` : ''}
       </div>
-    </div>
+    `).join('')}
   </div>
 `;
 document.body.appendChild(overlay);
