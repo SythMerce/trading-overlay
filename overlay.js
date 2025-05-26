@@ -79,6 +79,7 @@ overlay.innerHTML = `
     .toggle {
       display: flex;
       align-items: center;
+      justify-content: space-between;
       gap: 0.75rem;
       margin-bottom: 1.5rem;
     }
@@ -147,7 +148,6 @@ overlay.innerHTML = `
       <div class="input-row"><label>Total SOL Earned</label><input type="text" value="123.456 SOL"></div>
       <div class="input-row"><label>% Gain</label><input type="text" value="+9999%"></div>
     </div>
-    <!-- Example Panel with Toggles -->
     <div id="pnl" class="panel-content">
       <h3>📉 PnL Tracker</h3>
       <div class="toggle">
@@ -155,7 +155,6 @@ overlay.innerHTML = `
         <label class="switch"><input type="checkbox"><span class="slider"></span></label>
       </div>
     </div>
-    <!-- Add similar blocks for other menu panels -->
   </div>
 `;
 document.body.appendChild(overlay);
