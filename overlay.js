@@ -1,175 +1,233 @@
-// Create overlay container
-const overlay = document.createElement('div');
-overlay.id = 'tradingOverlay';
-overlay.innerHTML = `
-  <style>
-    :root {
-      --bg: #111;
-      --panel: #1a1a1a;
-      --neon: #39ff14;
-      --text: #ccc;
-    }
-    * {
-      box-sizing: border-box;
-      font-family: 'Segoe UI', sans-serif;
-    }
-    #tradingOverlay {
-      position: fixed; top: 0; left: 0; height: 100vh; width: 100vw;
-      background-color: rgba(0, 0, 0, 0.95); z-index: 99999; display: flex; color: var(--text);
-    }
-    .sidebar {
-      width: 260px; background-color: var(--panel); padding: 1rem; border-right: 2px solid var(--neon); overflow-y: auto;
-    }
-    .sidebar h2 {
-      color: var(--neon); font-size: 1.2rem; margin-bottom: 1rem;
-    }
-    .menu-item {
-      margin-bottom: 0.75rem; cursor: pointer; color: var(--text);
-      padding: 0.5rem; border-radius: 5px; transition: background 0.2s;
-    }
-    .menu-item:hover {
-      background-color: #2a2a2a;
-    }
-    .panel {
-      flex-grow: 1; padding: 2rem; background-color: var(--bg); overflow-y: auto;
-    }
-    .hidden {
-      display: none;
-    }
-    .input-row {
-      margin: 1rem 0;
-    }
-    label {
-      display: block; margin-bottom: 0.3rem;
-    }
-    input[type="text"], input[type="number"] {
-      background-color: #222;
-      color: var(--text);
-      padding: 0.6rem;
-      border: 1px solid var(--neon);
-      width: 100%;
-      border-radius: 5px;
-    }
-    .toggle-switch {
-      position: relative; display: inline-block; width: 50px; height: 24px;
-    }
-    .toggle-switch input {
-      opacity: 0; width: 0; height: 0;
-    }
-    .slider {
-      position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0;
-      background-color: #444; transition: 0.4s; border-radius: 24px;
-    }
-    .slider:before {
-      position: absolute; content: ""; height: 18px; width: 18px;
-      left: 3px; bottom: 3px; background-color: white;
-      transition: 0.4s; border-radius: 50%;
-    }
-    .toggle-switch input:checked + .slider {
-      background-color: var(--neon);
-    }
-    .toggle-switch input:checked + .slider:before {
-      transform: translateX(26px);
-    }
-  </style>
-  <div class="sidebar">
-    <h2>Trader UI</h2>
-    <div class="menu-item" onclick="showPanel('home')">🏠 Home</div>
-    <div class="menu-item" onclick="showPanel('pnl')">📉 PnL Tracker</div>
-    <div class="menu-item" onclick="showPanel('sniper')">🎯 Auto Sniper</div>
-    <div class="menu-item" onclick="showPanel('copy')">👥 Copy Trading</div>
-    <div class="menu-item" onclick="showPanel('wallet')">👛 Wallet Tracker</div>
-    <div class="menu-item" onclick="showPanel('twitter')">🐦 Twitter Tracker</div>
-    <div class="menu-item" onclick="showPanel('coin')">🪙 Coin Tracker</div>
-    <div class="menu-item" onclick="showPanel('autobuy')">🤖 Auto Buyer</div>
-    <div class="menu-item" onclick="showPanel('autosell')">🤖 Auto Seller</div>
-    <div class="menu-item" onclick="showPanel('alpha')">📡 Alpha & Signals</div>
-    <div class="menu-item" onclick="showPanel('utils')">🧰 Utilities</div>
-    <div class="menu-item" onclick="showPanel('dev')">🛠️ Dev Tools</div>
-    <div class="menu-item" onclick="showPanel('rug')">🚨 Anti Rug Pull</div>
-  </div>
-  <div class="panel">
-    <div id="home">
-      <h1 style="font-size: 3rem; color: var(--neon); margin-bottom: 0.5rem;">Home</h1>
-      <h2 style="font-size: 1.5rem; color: var(--neon); margin-bottom: 2rem;">Uxento.gg Advanced Tools</h2>
-      <div style="display: flex; align-items: center; justify-content: space-between;">
-        <div style="font-size: 1.5rem; color: white; line-height: 2.5rem;">
-          <div>Total SOL Earned: +127.14 SOL</div>
-          <div>All time PnL: 2386%</div>
-          <div>Daily SOL Earned: +4.78 SOL</div>
-          <div>% Gain: 128%</div>
+document.addEventListener("DOMContentLoaded", function () {
+  const app = document.getElementById("app");
+  app.innerHTML = `
+    <style>
+      body {
+        margin: 0;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #111;
+        color: white;
+      }
+      .sidebar {
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 250px;
+        height: 100%;
+        background-color: #1e1e1e;
+        padding: 20px;
+        box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+        overflow-y: auto;
+      }
+      .sidebar h2 {
+        color: #4CAF50;
+        margin-bottom: 20px;
+      }
+      .sidebar ul {
+        list-style: none;
+        padding: 0;
+      }
+      .sidebar ul li {
+        padding: 10px;
+        cursor: pointer;
+        color: #ccc;
+      }
+      .sidebar ul li:hover {
+        background-color: #333;
+      }
+      .content {
+        margin-left: 270px;
+        padding: 40px;
+      }
+      .hidden {
+        display: none;
+      }
+      .center-header {
+        text-align: center;
+      }
+      .center-header h1 {
+        font-size: 48px;
+        color: lime;
+        margin: 0;
+      }
+      .center-header h2 {
+        font-size: 24px;
+        color: limegreen;
+        margin: 0 0 40px;
+      }
+      .stats-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+      .stats {
+        font-size: 24px;
+        line-height: 2;
+      }
+      .stats span {
+        color: teal;
+        font-weight: bold;
+      }
+      .logo img {
+        max-width: 120px;
+        height: auto;
+      }
+      .section {
+        margin-bottom: 20px;
+      }
+      .section input, .section textarea {
+        width: 100%;
+        padding: 10px;
+        margin-top: 5px;
+        background: #222;
+        border: 1px solid #444;
+        color: white;
+        border-radius: 4px;
+      }
+    </style>
+
+    <div class="sidebar">
+      <h2>Overlay Menu</h2>
+      <ul>
+        <li onclick="showSection('home')">Home</li>
+        <li onclick="showSection('pnlTracker')">PnL Tracker</li>
+        <li onclick="showSection('walletTracker')">Wallet Tracker</li>
+        <li onclick="showSection('twitterTracker')">Twitter Tracker</li>
+        <li onclick="showSection('autoSniper')">Auto Sniper</li>
+        <li onclick="showSection('copyTrading')">Copy Trading</li>
+        <li onclick="showSection('coinTracker')">Coin Tracker</li>
+        <li onclick="showSection('autoBuyer')">Auto Buyer</li>
+        <li onclick="showSection('autoSeller')">Auto Seller</li>
+        <li onclick="showSection('alphaSignals')">Alpha & Signals</li>
+        <li onclick="showSection('utilities')">Utilities</li>
+        <li onclick="showSection('devTools')">Dev Tools</li>
+        <li onclick="showSection('antiRugPull')">Anti Rug Pull</li>
+      </ul>
+    </div>
+
+    <div class="content">
+      <div id="home" class="page">
+        <div class="center-header">
+          <h1>Home</h1>
+          <h2>Uxento.gg Advanced Tools</h2>
         </div>
-        <img src="solana-logo.png" alt="Solana Logo" width="120">
+        <div class="stats-container">
+          <div class="stats">
+            <p>Total SOL Earned: <span>+127.14 SOL</span></p>
+            <p>All time PnL: <span>2386%</span></p>
+            <p>Daily SOL Earned: <span>+4.78 SOL</span></p>
+            <p>% Gain: <span>128%</span></p>
+          </div>
+          <div class="logo">
+            <img src="https://cryptologos.cc/logos/solana-sol-logo.png?v=029" alt="Solana Logo">
+          </div>
+        </div>
+      </div>
+
+      <div id="pnlTracker" class="page hidden">
+        <h1>PnL Tracker</h1>
+        <div class="section">
+          <label>Track your profits and losses over time</label>
+          <textarea placeholder="Enter your PnL data or connect to portfolio..."></textarea>
+        </div>
+      </div>
+
+      <div id="walletTracker" class="page hidden">
+        <h1>Wallet Tracker</h1>
+        <div class="section">
+          <label>Enter wallet addresses to monitor:</label>
+          <textarea placeholder="Paste wallet addresses here..."></textarea>
+        </div>
+      </div>
+
+      <div id="twitterTracker" class="page hidden">
+        <h1>Twitter Tracker</h1>
+        <div class="section">
+          <label>Accounts or keywords to follow:</label>
+          <textarea placeholder="e.g. @elonmusk, #memecoin"></textarea>
+        </div>
+      </div>
+
+      <div id="autoSniper" class="page hidden">
+        <h1>Auto Sniper</h1>
+        <div class="section">
+          <label>Sniping Parameters</label>
+          <textarea placeholder="Set token, slippage, snipe timing..."></textarea>
+        </div>
+      </div>
+
+      <div id="copyTrading" class="page hidden">
+        <h1>Copy Trading</h1>
+        <div class="section">
+          <label>Wallets to copy:</label>
+          <textarea placeholder="Paste wallets to copy trades from..."></textarea>
+        </div>
+      </div>
+
+      <div id="coinTracker" class="page hidden">
+        <h1>Coin Tracker</h1>
+        <div class="section">
+          <label>Watchlist</label>
+          <textarea placeholder="Enter token names or addresses..."></textarea>
+        </div>
+      </div>
+
+      <div id="autoBuyer" class="page hidden">
+        <h1>Auto Buyer</h1>
+        <div class="section">
+          <label>Auto-buy settings</label>
+          <textarea placeholder="Token, conditions, frequency..."></textarea>
+        </div>
+      </div>
+
+      <div id="autoSeller" class="page hidden">
+        <h1>Auto Seller</h1>
+        <div class="section">
+          <label>Auto-sell rules</label>
+          <textarea placeholder="Profit targets, stop-loss, % dump..."></textarea>
+        </div>
+      </div>
+
+      <div id="alphaSignals" class="page hidden">
+        <h1>Alpha & Signals</h1>
+        <div class="section">
+          <label>Signals feed / Alpha groups:</label>
+          <textarea placeholder="Paste links or signals channels..."></textarea>
+        </div>
+      </div>
+
+      <div id="utilities" class="page hidden">
+        <h1>Utilities</h1>
+        <div class="section">
+          <label>Misc tools:</label>
+          <textarea placeholder="Gas checker, wallet viewer, etc..."></textarea>
+        </div>
+      </div>
+
+      <div id="devTools" class="page hidden">
+        <h1>Dev Tools</h1>
+        <div class="section">
+          <label>Developer options:</label>
+          <textarea placeholder="API endpoints, testnet tools..."></textarea>
+        </div>
+      </div>
+
+      <div id="antiRugPull" class="page hidden">
+        <h1>Anti Rug Pull</h1>
+        <div class="section">
+          <label>Check token safety:</label>
+          <textarea placeholder="Paste token address for analysis..."></textarea>
+        </div>
       </div>
     </div>
-    <div id="pnl" class="hidden">
-      <h3>📉 PnL Tracker</h3>
-      <label class="toggle-switch"><input type="checkbox"><span class="slider"></span></label> Enable PnL Tracker
-    </div>
-    <div id="sniper" class="hidden">
-      <h3>🎯 Auto Sniper</h3>
-      <label class="toggle-switch"><input type="checkbox"><span class="slider"></span></label> Enable Auto Sniper
-      <div class="input-row"><label>Buy Delay (ms)</label><input type="text" placeholder="500"></div>
-      <div class="input-row"><label>Sell Delay (ms)</label><input type="text" placeholder="1000"></div>
-    </div>
-    <div id="copy" class="hidden">
-      <h3>👥 Copy Trading</h3>
-      <label class="toggle-switch"><input type="checkbox"><span class="slider"></span></label> Enable Copy Trading
-      <div class="input-row"><label>Wallets to Copy</label><input type="text" placeholder="0xABC123..."></div>
-      <div class="input-row"><label>Mirror %</label><input type="text" placeholder="100"></div>
-    </div>
-    <div id="wallet" class="hidden">
-      <h3>👛 Wallet Tracker</h3>
-      <label class="toggle-switch"><input type="checkbox"><span class="slider"></span></label> Enable Wallet Tracker
-      <div class="input-row"><label>Paste Wallet Addresses (comma separated)</label><input type="text" placeholder="0xABC123..., 0xDEF456..."></div>
-    </div>
-    <div id="twitter" class="hidden">
-      <h3>🐦 Twitter Tracker</h3>
-      <label class="toggle-switch"><input type="checkbox"><span class="slider"></span></label> Enable Twitter Tracker
-      <div class="input-row"><label>Handles or Keywords</label><input type="text" placeholder="@elonmusk, $BONK"></div>
-    </div>
-    <div id="coin" class="hidden">
-      <h3>🪙 Coin Tracker</h3>
-      <label class="toggle-switch"><input type="checkbox"><span class="slider"></span></label> Enable Coin Tracker
-      <div class="input-row"><label>Token List</label><input type="text" placeholder="CAKE, BONK"></div>
-    </div>
-    <div id="autobuy" class="hidden">
-      <h3>🤖 Auto Buyer</h3>
-      <label class="toggle-switch"><input type="checkbox"><span class="slider"></span></label> Enable Auto Buyer
-    </div>
-    <div id="autosell" class="hidden">
-      <h3>🤖 Auto Seller</h3>
-      <label class="toggle-switch"><input type="checkbox"><span class="slider"></span></label> Enable Auto Seller
-    </div>
-    <div id="alpha" class="hidden">
-      <h3>📡 Alpha & Signals</h3>
-      <label class="toggle-switch"><input type="checkbox"><span class="slider"></span></label> Enable Alpha Feed
-      <label class="toggle-switch"><input type="checkbox"><span class="slider"></span></label> Enable Call Alerts
-    </div>
-    <div id="utils" class="hidden">
-      <h3>🧰 Utilities</h3>
-      <label class="toggle-switch"><input type="checkbox"><span class="slider"></span></label> Enable TX Builder
-      <label class="toggle-switch"><input type="checkbox"><span class="slider"></span></label> Enable Token Checker
-    </div>
-    <div id="dev" class="hidden">
-      <h3>🛠️ Dev Tools</h3>
-      <label class="toggle-switch"><input type="checkbox"><span class="slider"></span></label> Enable Contract Interactor
-      <label class="toggle-switch"><input type="checkbox"><span class="slider"></span></label> Enable Honeypot Checker
-    </div>
-    <div id="rug" class="hidden">
-      <h3>🚨 Anti Rug Pull</h3>
-      <label class="toggle-switch"><input type="checkbox"><span class="slider"></span></label> Enable Anti-Rug Protection
-      <div class="input-row"><label>Trigger Loss % (e.g. -25)</label><input type="text" placeholder="-25"></div>
-      <div class="input-row"><label>Auto-Sell If Drop Predicted > %</label><input type="text" placeholder="70"></div>
-      <label class="toggle-switch"><input type="checkbox"><span class="slider"></span></label> Instant Exit Enabled
-    </div>
-  </div>
-`;
-document.body.appendChild(overlay);
 
-function showPanel(id) {
-  document.querySelectorAll('#tradingOverlay .panel > div').forEach(div => div.classList.add('hidden'));
-  document.getElementById(id).classList.remove('hidden');
-}
-
-showPanel('home');
+    <script>
+      function showSection(sectionId) {
+        const sections = document.querySelectorAll(".page");
+        sections.forEach(sec => sec.classList.add("hidden"));
+        document.getElementById(sectionId).classList.remove("hidden");
+      }
+    </script>
+  `;
+});
