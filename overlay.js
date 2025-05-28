@@ -94,12 +94,12 @@ overlay.innerHTML = `
       <h2 style="font-size: 1.5rem; color: var(--neon); margin-bottom: 2rem;">Uxento.gg Advanced Tools</h2>
       <div style="display: flex; align-items: center; justify-content: space-between;">
         <div style="font-size: 1.5rem; color: white; line-height: 2.5rem;">
-          <div>Total SOL Earned</div>
-          <div>All time PnL:</div>
-          <div>Daily PnL</div>
-          <div>% Gain</div>
+          <div>Total SOL Earned: +127.14 SOL</div>
+          <div>All time PnL: 2386%</div>
+          <div>Daily SOL Earned: +4.78 SOL</div>
+          <div>% Gain: 128%</div>
         </div>
-        <img src="https://cryptologos.cc/logos/solana-sol-logo.png" alt="Solana Logo" style="height: 120px;">
+        <img src="solana-logo.png" alt="Solana Logo" width="120">
       </div>
     </div>
     <div id="pnl" class="hidden">
