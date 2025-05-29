@@ -221,14 +221,12 @@ document.addEventListener("DOMContentLoaded", function () {
         </div>
       </div>
     </div>
-
-    <script>
-      function showSection(sectionId) {
-        const sections = document.querySelectorAll(".page");
-        sections.forEach(sec => sec.classList.add("hidden"));
-        document.getElementById(sectionId).classList.remove("hidden");
-      }
-    </script>
   `;
-});
 
+  // ✅ Define this after injecting HTML
+  window.showSection = function (sectionId) {
+    const sections = document.querySelectorAll(".page");
+    sections.forEach(sec => sec.classList.add("hidden"));
+    document.getElementById(sectionId).classList.remove("hidden");
+  };
+});
