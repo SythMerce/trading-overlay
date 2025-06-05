@@ -128,40 +128,72 @@ document.addEventListener("DOMContentLoaded", function () {
       <div id="pnlTracker" class="page hidden">
         <h1>PnL Tracker</h1>
         <div class="section">
-          <label>Track your profits and losses over time</label>
-          <textarea placeholder="Enter your PnL data or connect to portfolio..."></textarea>
+          <label>Total Trades</label>
+          <input type="text" placeholder="0">
+        </div>
+        <div class="section">
+          <label>Win Rate</label>
+          <input type="text" placeholder="0%">
+        </div>
+        <div class="section">
+          <label>Biggest Win</label>
+          <input type="text" placeholder="+0.00 SOL">
+        </div>
+        <div class="section">
+          <label>Biggest Loss</label>
+          <input type="text" placeholder="-0.00 SOL">
         </div>
       </div>
 
       <div id="walletTracker" class="page hidden">
         <h1>Wallet Tracker</h1>
         <div class="section">
-          <label>Enter wallet addresses to monitor:</label>
+          <label>Tracked Wallets</label>
           <textarea placeholder="Paste wallet addresses here..."></textarea>
+        </div>
+        <div class="section">
+          <label>Net Balance</label>
+          <input type="text" placeholder="0.00 SOL">
         </div>
       </div>
 
       <div id="twitterTracker" class="page hidden">
         <h1>Twitter Tracker</h1>
         <div class="section">
-          <label>Accounts or keywords to follow:</label>
-          <textarea placeholder="e.g. @elonmusk, #memecoin"></textarea>
+          <label>Followed Accounts</label>
+          <input type="text" placeholder="e.g. @elonmusk">
+        </div>
+        <div class="section">
+          <label>Tracked Hashtags</label>
+          <input type="text" placeholder="#memecoin">
         </div>
       </div>
 
       <div id="autoSniper" class="page hidden">
         <h1>Auto Sniper</h1>
         <div class="section">
-          <label>Sniping Parameters</label>
-          <textarea placeholder="Set token, slippage, snipe timing..."></textarea>
+          <label>Token Address</label>
+          <input type="text" placeholder="Paste token address">
+        </div>
+        <div class="section">
+          <label>Slippage</label>
+          <input type="text" placeholder="e.g. 1%">
+        </div>
+        <div class="section">
+          <label>Snipe Delay (ms)</label>
+          <input type="text" placeholder="e.g. 200">
         </div>
       </div>
 
       <div id="copyTrading" class="page hidden">
         <h1>Copy Trading</h1>
         <div class="section">
-          <label>Wallets to copy:</label>
-          <textarea placeholder="Paste wallets to copy trades from..."></textarea>
+          <label>Tracked Wallets</label>
+          <textarea placeholder="Wallet addresses to copy..."></textarea>
+        </div>
+        <div class="section">
+          <label>Trade Filters</label>
+          <input type="text" placeholder="e.g. min amount, token">
         </div>
       </div>
 
@@ -169,64 +201,97 @@ document.addEventListener("DOMContentLoaded", function () {
         <h1>Coin Tracker</h1>
         <div class="section">
           <label>Watchlist</label>
-          <textarea placeholder="Enter token names or addresses..."></textarea>
+          <textarea placeholder="Token names or addresses..."></textarea>
+        </div>
+        <div class="section">
+          <label>Alerts</label>
+          <input type="text" placeholder="Set price alert levels">
         </div>
       </div>
 
       <div id="autoBuyer" class="page hidden">
         <h1>Auto Buyer</h1>
         <div class="section">
-          <label>Auto-buy settings</label>
-          <textarea placeholder="Token, conditions, frequency..."></textarea>
+          <label>Buy Token</label>
+          <input type="text" placeholder="Paste token address">
+        </div>
+        <div class="section">
+          <label>Buy Conditions</label>
+          <input type="text" placeholder="e.g. price drop %">
         </div>
       </div>
 
       <div id="autoSeller" class="page hidden">
         <h1>Auto Seller</h1>
         <div class="section">
-          <label>Auto-sell rules</label>
-          <textarea placeholder="Profit targets, stop-loss, % dump..."></textarea>
+          <label>Sell Token</label>
+          <input type="text" placeholder="Paste token address">
+        </div>
+        <div class="section">
+          <label>Target % Profit</label>
+          <input type="text" placeholder="e.g. 20%">
+        </div>
+        <div class="section">
+          <label>Stop Loss %</label>
+          <input type="text" placeholder="e.g. 10%">
         </div>
       </div>
 
       <div id="alphaSignals" class="page hidden">
         <h1>Alpha & Signals</h1>
         <div class="section">
-          <label>Signals feed / Alpha groups:</label>
-          <textarea placeholder="Paste links or signals channels..."></textarea>
+          <label>Group Name</label>
+          <input type="text" placeholder="e.g. Whale Watchers">
+        </div>
+        <div class="section">
+          <label>Signal Type</label>
+          <input type="text" placeholder="e.g. buy, sell, alert">
         </div>
       </div>
 
       <div id="utilities" class="page hidden">
         <h1>Utilities</h1>
         <div class="section">
-          <label>Misc tools:</label>
-          <textarea placeholder="Gas checker, wallet viewer, etc..."></textarea>
+          <label>Tool Name</label>
+          <input type="text" placeholder="e.g. Gas Tracker">
+        </div>
+        <div class="section">
+          <label>Tool Settings</label>
+          <textarea placeholder="e.g. network, refresh interval..."></textarea>
         </div>
       </div>
 
       <div id="devTools" class="page hidden">
         <h1>Dev Tools</h1>
         <div class="section">
-          <label>Developer options:</label>
-          <textarea placeholder="API endpoints, testnet tools..."></textarea>
+          <label>API Key</label>
+          <input type="text" placeholder="Paste your API key">
+        </div>
+        <div class="section">
+          <label>Environment</label>
+          <input type="text" placeholder="mainnet/testnet">
         </div>
       </div>
 
       <div id="antiRugPull" class="page hidden">
         <h1>Anti Rug Pull</h1>
         <div class="section">
-          <label>Check token safety:</label>
-          <textarea placeholder="Paste token address for analysis..."></textarea>
+          <label>Token Safety Check</label>
+          <input type="text" placeholder="Paste token address">
+        </div>
+        <div class="section">
+          <label>Audit Score</label>
+          <input type="text" placeholder="e.g. 85%">
         </div>
       </div>
     </div>
-  `;
 
-  // ✅ Define this after injecting HTML
-  window.showSection = function (sectionId) {
-    const sections = document.querySelectorAll(".page");
-    sections.forEach(sec => sec.classList.add("hidden"));
-    document.getElementById(sectionId).classList.remove("hidden");
-  };
+    <script>
+      function showSection(sectionId) {
+        const sections = document.querySelectorAll(".page");
+        sections.forEach(sec => sec.classList.add("hidden"));
+        document.getElementById(sectionId).classList.remove("hidden");
+      }
+    </script>
+  `;
 });
